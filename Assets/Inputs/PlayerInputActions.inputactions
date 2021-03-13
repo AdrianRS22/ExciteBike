@@ -1,1 +1,63 @@
-﻿{}
+{
+    "name": "PlayerInputActions",
+    "maps": [
+        {
+            "name": "OnGround",
+            "id": "a6e0faab-1661-4f0e-b96e-dabd0a2bd7fc",
+            "actions": [
+                {
+                    "name": "Ride",
+                    "type": "PassThrough",
+                    "id": "bc9ec5b1-116f-44c6-acec-fbd251acfedb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Hold"
+                },
+                {
+                    "name": "Jump",
+                    "type": "PassThrough",
+                    "id": "998b7b12-7059-437e-83f8-8f169ec71c69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Horizontal",
+                    "id": "54f98111-6d03-4868-8c1e-70a41db40dc6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ride",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "89be6b03-2e65-4f45-a373-05e37d8492f5",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ride",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "fe3af3a3-9f83-4b5c-bacf-6f6c9996cd07",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ride",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
