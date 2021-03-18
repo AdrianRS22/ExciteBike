@@ -24,6 +24,6 @@ public class CronometroBehaviour : MonoBehaviour
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(Time.time);
         DateTime resultado = DateTime.MinValue.Add(timeSpan);
-        textoTiempo.text = string.Format("{0:0}:{1:00}:{2:00}", resultado.Minute, resultado.Second, resultado.Millisecond);
+        textoTiempo.text = string.Format("{0:0}:{1:00}:{2:00}", resultado.Minute, resultado.Second, (resultado.Millisecond / 10));
     }
 }
