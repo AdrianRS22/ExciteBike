@@ -5,12 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    public Transform target;
-
-    [SerializeField]
-    public Transform target2;
-
-    [SerializeField]
     public float speed;
 
     [SerializeField]
@@ -30,17 +24,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            currentPosition.y = -1.9F;
+        }
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            currentPosition = target.position;
-            currentPosition.z = 1F;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, currentPosition, speed * Time.deltaTime);
+        body.position = Vector3.MoveTowards(body.position, currentPosition, speed * Time.deltaTime);
     }
 }
