@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    public float speed = 5.0f;
+    public float speed = 5f;
 
     private Animator animator;
 
@@ -13,10 +13,17 @@ public class PlayerController : MonoBehaviour
 
     private bool isRiding = false;
 
+    private bool isMoving;
+
+    private Vector3 origPos, targetPos;
+
+    private float verticalTimeToMove = 0.2f;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        isMoving = false;
     }
 
     void Update()
@@ -25,13 +32,9 @@ public class PlayerController : MonoBehaviour
         {
             isRiding = true;
             rigidBody.velocity = new Vector2(-Input.GetAxisRaw("Horizontal") * speed, rigidBody.velocity.y);
+            MovePlayerVertical();
         }
-
-        if (Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.2f)
-        {
-            var translation = new Vector3(0, Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, 0);
-            transform.Translate(translation);
-        }
+        MovePlayerVertical();
     }
 
     private void LateUpdate()
@@ -43,5 +46,42 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
         animator.SetBool("isRiding", isRiding);
+    }
+
+    private void MovePlayerVertical()
+    {
+        if (isMoving)
+        {
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            StartCoroutine(MovePlayer(Vector3.up));
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            StartCoroutine(MovePlayer(Vector3.down));
+        }
+    }
+
+    private IEnumerator MovePlayer(Vector3 direction)
+    {
+        isMoving = true;
+
+        float elapsedTime = 0;
+
+        origPos = transform.position;
+        targetPos = origPos + direction;
+
+        while(elapsedTime < verticalTimeToMove)
+        {
+            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / verticalTimeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isMoving = false;
     }
 }
