@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
+        transform.position = targetPos;
+
         isMoving = false;
     }
 }
