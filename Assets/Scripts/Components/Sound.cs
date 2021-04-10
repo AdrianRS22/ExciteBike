@@ -16,4 +16,7 @@ public class Sound
     [SerializeField]
     [Range(0F, 1F)]
     public float volumen;
+
+    [SerializeField]
+    public bool repetir;
 }
