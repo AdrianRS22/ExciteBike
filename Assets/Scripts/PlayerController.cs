@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isRiding = false;
 
-    private bool isMoving;
+    private bool isMoving = false;
 
     private Vector3 origPos, targetPos;
 
@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
-        isMoving = false;
     }
 
     void Update()
@@ -31,7 +30,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             isRiding = true;
-            rigidBody.velocity = new Vector2(-Input.GetAxisRaw("Horizontal") * speed, rigidBody.velocity.y);
+
+            Vector3 translation = new Vector3(-Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, 0, 0);
+            transform.Translate(translation);
+
             MovePlayerVertical();
         }
         MovePlayerVertical();
@@ -39,11 +41,6 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            isRiding = false;
-            rigidBody.velocity = Vector2.zero;
-        }
         animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
         animator.SetBool("isRiding", isRiding);
     }
