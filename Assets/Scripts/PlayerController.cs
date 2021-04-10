@@ -15,6 +15,16 @@ public class PlayerController : Character2DController
 
     private readonly float verticalTimeToMove = 0.2f;
 
+    private AudioManager audioManager;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
+
+
     void Update()
     {
         if (gameController.inicioJuego)
@@ -34,6 +44,7 @@ public class PlayerController : Character2DController
 
     private void LateUpdate()
     {
+        PlayRideSound(KeyCode.A, "Ride");
         animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
         animator.SetBool("isRiding", isRiding);
     }
@@ -53,6 +64,20 @@ public class PlayerController : Character2DController
         if (Input.GetKey(KeyCode.DownArrow))
         {
             StartCoroutine(MovePlayer(Vector3.down));
+        }
+    }
+
+    private void PlayRideSound(KeyCode code, string effectName)
+    {
+        if (Input.GetKeyDown(code))
+        {
+            audioManager.Play(effectName);
+        }
+
+        if (Input.GetKeyUp(code))
+        {
+            isRiding = false;
+            audioManager.Stop(effectName);
         }
     }
 

@@ -6,7 +6,7 @@ public class Character2DController : MonoBehaviour
 
     protected GameController gameController;
 
-    void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
         gameController = FindObjectOfType<GameController>();
@@ -21,7 +21,7 @@ public class Character2DController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log($"El valor del inicio del juego es {gameController.inicioJuego}");
+
     }
 
 

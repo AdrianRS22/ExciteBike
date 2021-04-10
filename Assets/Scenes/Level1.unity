@@ -2570,9 +2570,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
       propertyPath: sounds.Array.data[0].sonido
       value: 
       objectReference: {fileID: 8300000, guid: a7a6e345a432aa84aa392d6b7b9eb2d6, type: 3}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[1].nombre
+      value: Ride
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[1].sonido
+      value: 
+      objectReference: {fileID: 8300000, guid: a522c9995614a4646ac849e473259cb4, type: 3}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[1].volumen
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fad439d01b772545bf5c31805d6291e, type: 3}
 --- !u!1 &1896453064
