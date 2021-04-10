@@ -22,8 +22,12 @@ public class CronometroBehaviour : MonoBehaviour
 
     void CalcularTiempo()
     {
-        TimeSpan timeSpan = TimeSpan.FromSeconds(Time.time);
-        DateTime resultado = DateTime.MinValue.Add(timeSpan);
-        textoTiempo.text = string.Format("{0:0}:{1:00}:{2:00}", resultado.Minute, resultado.Second, (resultado.Millisecond / 10));
+        tiempo += Time.deltaTime;
+
+        int minutos = (int)tiempo / 60;
+        int segundos = (int)tiempo % 60;
+        int milisegundos = (int)(tiempo * 100) % 100;
+
+        textoTiempo.text = string.Format("{0:0}:{1:00}:{2:00}", minutos, segundos, milisegundos);
     }
 }
