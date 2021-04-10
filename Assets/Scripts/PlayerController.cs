@@ -17,16 +17,19 @@ public class PlayerController : Character2DController
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (gameController.inicioJuego)
         {
-            isRiding = true;
+            if (Input.GetKey(KeyCode.A))
+            {
+                isRiding = true;
 
-            Vector3 translation = new Vector3(-Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, 0, 0);
-            transform.Translate(translation);
+                Vector3 translation = new Vector3(-Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, 0, 0);
+                transform.Translate(translation);
 
+                MovePlayerVertical();
+            }
             MovePlayerVertical();
         }
-        MovePlayerVertical();
     }
 
     private void LateUpdate()
