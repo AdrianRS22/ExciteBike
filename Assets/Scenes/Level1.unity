@@ -2570,6 +2570,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
+      propertyPath: isMute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
       propertyPath: sounds.Array.size
       value: 2
       objectReference: {fileID: 0}

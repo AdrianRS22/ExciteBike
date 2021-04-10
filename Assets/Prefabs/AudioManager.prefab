@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8e42c9c248e4f4d98ede47866e9ed0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMute: 1
   sounds:
   - nombre: Theme
     sonido: {fileID: 8300000, guid: 6b03ffc7b0f7499428e2123e03fac192, type: 3}

@@ -5,11 +5,20 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
+    /// <summary>
+    ///  propiedad temporal para mutear el audioManager
+    /// </summary>
+    [SerializeField]
+    public bool isMute = true;
+
     public Sound[] sounds;
 
     void Start()
     {
-        Play("Theme");
+        if (!isMute)
+        {
+            Play("Theme");
+        }
     }
 
     void Awake()
