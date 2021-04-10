@@ -407,6 +407,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Game Camera
   m_TagString: MainCamera
@@ -448,6 +449,14 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!81 &519420030
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2448,6 +2457,80 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &1814787334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.713601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -12.984002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -43.459896
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788896, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788910, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[0].sonido
+      value: 
+      objectReference: {fileID: 8300000, guid: a7a6e345a432aa84aa392d6b7b9eb2d6, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0fad439d01b772545bf5c31805d6291e, type: 3}
 --- !u!1 &1896453064
 GameObject:
   m_ObjectHideFlags: 0
