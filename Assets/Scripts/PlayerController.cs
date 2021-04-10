@@ -44,9 +44,12 @@ public class PlayerController : Character2DController
 
     private void LateUpdate()
     {
-        PlayRideSound(KeyCode.A, "Ride");
-        animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
-        animator.SetBool("isRiding", isRiding);
+        if (gameController.inicioJuego)
+        {
+            PlayRideSound(KeyCode.A, "Ride");
+            animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
+            animator.SetBool("isRiding", isRiding);
+        }
     }
 
     private void MovePlayerVertical()
