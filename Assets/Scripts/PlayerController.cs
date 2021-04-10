@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Character2DController
 {
     [SerializeField]
     public float speed = 5f;
-
-    private Animator animator;
-
-    private Rigidbody2D rigidBody;
 
     private bool isRiding = false;
 
@@ -17,13 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 origPos, targetPos;
 
-    private float verticalTimeToMove = 0.2f;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
+    private readonly float verticalTimeToMove = 0.2f;
 
     void Update()
     {
