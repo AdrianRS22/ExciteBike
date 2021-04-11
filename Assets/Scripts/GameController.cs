@@ -34,6 +34,7 @@ public class GameController : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(13);
             startingMarks.ClosingStartingMarks();
+            yield return new WaitForSecondsRealtime(1);
             inicioJuego = true;
         }
 
