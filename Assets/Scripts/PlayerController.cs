@@ -174,6 +174,7 @@ public class PlayerController : Character2DController
                 tempController.overheated = true;
                 audioManager.Stop("RideTemp");
                 isRiding = false;
+                animator.SetBool("isRiding", isRiding);
                 hasStop = true;
                 yield return new WaitForSeconds(5);
                 tempController.overheated = false;
