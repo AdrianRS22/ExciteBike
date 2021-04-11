@@ -69,11 +69,6 @@ public class TempController : MonoBehaviour
         }
     }
 
-    void IsOverHeated()
-    {
-
-    }
-
     IEnumerator BlinkingOverHeadedText()
     {
         while (true)
