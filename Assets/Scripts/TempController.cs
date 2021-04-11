@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class TempController : MonoBehaviour
 {
     /// <summary>
+    /// Controlador del audio
+    /// </summary>
+    private AudioManager audioManager;
+
+    /// <summary>
+    /// Controlador del juego
+    /// </summary>
+    private GameController gameController;
+
+    /// <summary>
     /// Barra temporizador que esta en el canvas
     /// </summary>
     [SerializeField]
@@ -48,6 +58,7 @@ public class TempController : MonoBehaviour
         };
         tempBar.maxValue = 100;
         tempBar.value = 25;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Start is called before the first frame update
@@ -59,7 +70,7 @@ public class TempController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnGUI()
@@ -86,6 +97,14 @@ public class TempController : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             overheatedBlinkingText = false;
             yield return new WaitForSeconds(.5f);
+        }
+    }
+
+    public void IncreaseTemp(float increaseValue)
+    {
+        if(tempBar.value < tempBar.maxValue)
+        {
+            tempBar.value += increaseValue;
         }
     }
 }

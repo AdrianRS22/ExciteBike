@@ -7,8 +7,7 @@ public class PlayerController : Character2DController
     /// <summary>
     /// Velocidad del jugador en modo base
     /// </summary>
-    [SerializeField]
-    public float speed = 10f;
+    private readonly float baseSpeed = 10f;
 
     /// <summary>
     /// Velocidad del jugador utilizando el temporizador
@@ -35,11 +34,14 @@ public class PlayerController : Character2DController
 
     private AudioManager audioManager;
 
+    private TempController tempController;
+
     protected override void Awake()
     {
         base.Awake();
         audioManager = FindObjectOfType<AudioManager>();
         rideMovementSound = null;
+        tempController = FindObjectOfType<TempController>();
     }
 
     void Update()
@@ -53,7 +55,7 @@ public class PlayerController : Character2DController
 
                 if (Input.GetKey(GameConstants.RideKeyCode))
                 {
-                    currentSpeed = speed;
+                    currentSpeed = baseSpeed;
                     rideMovementSound = new RideMovementSound
                     {
                         KeyCode = GameConstants.RideKeyCode,
@@ -68,6 +70,7 @@ public class PlayerController : Character2DController
                         KeyCode = GameConstants.RideTempKeyCode,
                         SoundEffect = "RideTemp"
                     };
+                    tempController.IncreaseTemp(0.1f);
                 }
 
                 Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * currentSpeed * Time.deltaTime, 0, 0);
