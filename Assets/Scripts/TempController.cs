@@ -64,7 +64,7 @@ public class TempController : MonoBehaviour
     void Start()
     {
         tempBar.maxValue = 100;
-        tempBar.value = 90;
+        tempBar.value = 25;
         StartCoroutine(BlinkingOverHeadedText());
     }
 
