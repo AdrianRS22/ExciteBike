@@ -2571,7 +2571,7 @@ PrefabInstance:
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: isMute
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
@@ -2592,7 +2592,7 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[1].sonido
       value: 
-      objectReference: {fileID: 8300000, guid: 0f07c33a82353ce4faa5e3438b21beae, type: 3}
+      objectReference: {fileID: 8300000, guid: 4daaa2f7edd95ad4883110eff4b1f0a1, type: 3}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: sounds.Array.data[1].repetir

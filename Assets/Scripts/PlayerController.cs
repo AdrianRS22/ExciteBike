@@ -29,11 +29,11 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(GameConstants.RideKeyCode))
             {
                 isRiding = true;
 
-                Vector3 translation = new Vector3(-Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime, 0, 0);
+                Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * speed * Time.deltaTime, 0, 0);
                 transform.Translate(translation);
 
                 MovePlayerVertical();
@@ -46,8 +46,8 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            PlayRideSound(KeyCode.A, "Ride");
-            animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
+            PlayRideSound(GameConstants.RideKeyCode, "Ride");
+            animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
             animator.SetBool("isRiding", isRiding);
         }
     }
