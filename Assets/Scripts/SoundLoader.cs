@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoundLoader : MonoBehaviour
 {
+
+    [SerializeField]
+    public bool isMute = true;
+
     private SceneLoader sceneLoader;
 
     private AudioManager audioManager;
@@ -21,13 +25,19 @@ public class SoundLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioManager.Play("Theme");
+        if (!isMute)
+        {
+            audioManager.Play("Theme");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        CargarSonidos(sceneLoader.escenaActual);
+        if (!isMute)
+        {
+            CargarSonidos(sceneLoader.escenaActual);
+        }
     }
 
     private void CargarSonidos(int escenaActual)

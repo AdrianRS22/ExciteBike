@@ -4,12 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    /// <summary>
-    ///  propiedad temporal para mutear el audioManager
-    /// </summary>
-    [SerializeField]
-    public bool isMute = true;
-
     public Sound[] sounds;
 
     void Awake()

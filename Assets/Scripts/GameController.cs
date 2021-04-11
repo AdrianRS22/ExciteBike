@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public bool inicioJuego = false;
 
+    public bool raceFinished = false;
 
     /// <summary>
     ///  Controlador del game object que posee todos los starting marks
@@ -33,4 +33,8 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+    
+
+
 }
