@@ -5,9 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    public int escenaActual;
+
+    void Awake()
+    {
+        escenaActual = SceneManager.GetActiveScene().buildIndex;
+    }
+
     public void ProximaEscena()
     {
-        int escenaActual = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(escenaActual + 1);
     }
 

@@ -2576,7 +2576,7 @@ PrefabInstance:
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
@@ -2595,12 +2595,32 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 4daaa2f7edd95ad4883110eff4b1f0a1, type: 3}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
+      propertyPath: sounds.Array.data[2].nombre
+      value: cuentaRegresiva
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[2].sonido
+      value: 
+      objectReference: {fileID: 8300000, guid: 3063c632587d11847a23825a3c70b5e0, type: 3}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
       propertyPath: sounds.Array.data[1].repetir
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: sounds.Array.data[1].volumen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[2].repetir
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[2].volumen
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

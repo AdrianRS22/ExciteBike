@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(9);
+        yield return new WaitForSeconds(11);
         inicioJuego = true;
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,17 +12,9 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    void Start()
-    {
-        if (!isMute)
-        {
-            Play("Theme");
-        }
-    }
-
     void Awake()
     {
-        foreach(var sound in sounds)
+        foreach (var sound in sounds)
         {
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.sonido;
@@ -56,6 +47,10 @@ public class AudioManager : MonoBehaviour
         }
 
         sound.source.Stop();
+    }
 
+    public Sound Fetch(string nombre)
+    {
+        return Array.Find(sounds, x => x.nombre.Equals(nombre));
     }
 }
