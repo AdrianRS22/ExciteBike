@@ -6,11 +6,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    /// <summary>
-    /// Si se esta ejecutando un efecto de sonido
-    /// </summary>
-    private bool isAnySoundEffectPlaying = false;
-
     void Awake()
     {
         foreach (var sound in sounds)
