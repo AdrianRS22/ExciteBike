@@ -26,7 +26,7 @@ public class PlayerController : Character2DController
 
     private bool isRiding = false;
 
-    private bool isMoving = false;
+    private bool hasStop = false;
 
     private Vector3 origPos, targetPos;
 
@@ -48,7 +48,12 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            if(Input.GetKey(GameConstants.RideKeyCode) || Input.GetKey(GameConstants.RideTempKeyCode))
+            if (hasStop)
+            {
+                return;
+            }
+
+            if (Input.GetKey(GameConstants.RideKeyCode) || Input.GetKey(GameConstants.RideTempKeyCode))
             {
 
                 isRiding = true;
@@ -70,7 +75,7 @@ public class PlayerController : Character2DController
                         KeyCode = GameConstants.RideTempKeyCode,
                         SoundEffect = "RideTemp"
                     };
-                    tempController.IncreaseTemp(0.1f);
+                    StartCoroutine(TempLogic());
                 }
 
                 Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * currentSpeed * Time.deltaTime, 0, 0);
@@ -87,22 +92,21 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            if(rideMovementSound != null && isRiding)
+            if (!hasStop)
             {
-                PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
+                if (rideMovementSound != null)
+                {
+                    PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
+                }
                 animator.SetBool("isRiding", isRiding);
+                Debug.Log(Input.GetAxisRaw(GameConstants.AXIS_V));
+                animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
             }
-            animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
         }
     }
 
     private void MovePlayerVertical()
     {
-        if (isMoving)
-        {
-            return;
-        }
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
             StartCoroutine(MovePlayer(Vector3.up));
@@ -131,7 +135,7 @@ public class PlayerController : Character2DController
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
-        isMoving = true;
+        hasStop = true;
 
         float elapsedTime = 0;
 
@@ -147,6 +151,36 @@ public class PlayerController : Character2DController
 
         transform.position = targetPos;
 
-        isMoving = false;
+        hasStop = false;
+    }
+
+    IEnumerator TempLogic()
+    {
+        var overHeated = tempController.overheated;
+
+        if (!overHeated)
+        {
+            var currTempBarValue = tempController.tempBar.value;
+            var maxTempValue = tempController.tempBar.maxValue;
+
+            if (currTempBarValue == maxTempValue)
+            {
+                tempController.overheated = true;
+                audioManager.Stop("RideTemp");
+                animator.SetBool("isRiding", false);
+                hasStop = true;
+                yield return new WaitForSeconds(5);
+                tempController.overheated = false;
+                tempController.overheatedContinue = true;
+                tempController.tempBar.value = 25f;
+                yield return new WaitForSeconds(3);
+                tempController.overheatedContinue = false;
+                hasStop = false;
+            }
+            else if(currTempBarValue < maxTempValue)
+            {
+                tempController.IncreaseTemp(0.1f);
+            }
+        }
     }
 }
