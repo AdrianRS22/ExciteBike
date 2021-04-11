@@ -34,14 +34,14 @@ public class PlayerController : Character2DController
 
     private readonly float verticalTimeToMove = 0.2f;
 
-    private AudioManager audioManager;
+    //private AudioManager audioManager;
 
     private TempController tempController;
 
     protected override void Awake()
     {
         base.Awake();
-        audioManager = FindObjectOfType<AudioManager>();
+        //audioManager = FindObjectOfType<AudioManager>();
         rideMovementSound = null;
         tempController = FindObjectOfType<TempController>();
     }
@@ -98,7 +98,12 @@ public class PlayerController : Character2DController
             {
                 if (rideMovementSound != null)
                 {
-                    PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
+                    //PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
+                }
+
+                if(Input.GetKeyUp(GameConstants.RideKeyCode) || Input.GetKeyUp(GameConstants.RideTempKeyCode))
+                {
+                    isRiding = false;
                 }
                 animator.SetBool("isRiding", isRiding);
                 animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
@@ -124,20 +129,20 @@ public class PlayerController : Character2DController
         }
     }
 
-    private void PlayRideSound(KeyCode code, string effectName)
-    {
-        if (Input.GetKeyDown(code))
-        {
-            audioManager.PlayOneShot(effectName);
-        }
+    //private void PlayRideSound(KeyCode code, string effectName)
+    //{
+    //    if (Input.GetKeyDown(code))
+    //    {
+    //        audioManager.PlayOneShot(effectName);
+    //    }
 
-        if (Input.GetKeyUp(code))
-        {
-            isRiding = false;
+    //    if (Input.GetKeyUp(code))
+    //    {
+    //        isRiding = false;
 
-            audioManager.Stop(effectName);
-        }
-    }
+    //        audioManager.Stop(effectName);
+    //    }
+    //}
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
@@ -172,7 +177,7 @@ public class PlayerController : Character2DController
             if (currTempBarValue == maxTempValue)
             {
                 tempController.overheated = true;
-                audioManager.Stop("RideTemp");
+                //audioManager.Stop("RideTemp");
                 isRiding = false;
                 animator.SetBool("isRiding", isRiding);
                 hasStop = true;

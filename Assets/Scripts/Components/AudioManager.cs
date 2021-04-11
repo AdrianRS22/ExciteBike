@@ -30,16 +30,6 @@ public class AudioManager : MonoBehaviour
         sound.source.Play();
     }
 
-    public void PlayOneShot(string nombre)
-    {
-        var soundEfect = Fetch(nombre);
-
-        if (soundEfect != null)
-        {
-            soundEfect.source.PlayOneShot(soundEfect.source.clip);
-        }
-    }
-
     public void Stop(string nombre)
     {
         var sound = Array.Find(sounds, x => x.nombre.Equals(nombre));
