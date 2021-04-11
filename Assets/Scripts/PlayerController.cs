@@ -34,16 +34,19 @@ public class PlayerController : Character2DController
 
     private readonly float verticalTimeToMove = 0.2f;
 
-    //private AudioManager audioManager;
-
     private TempController tempController;
+
+    /// <summary>
+    /// Controlador que se encarga de darle seguimiento a todos los efectos de sonido cargados en la escena
+    /// </summary>
+    private SFXTracker sfxTracker;
 
     protected override void Awake()
     {
         base.Awake();
-        //audioManager = FindObjectOfType<AudioManager>();
         rideMovementSound = null;
         tempController = FindObjectOfType<TempController>();
+        sfxTracker = FindObjectOfType<SFXTracker>();
     }
 
     void Update()
@@ -129,21 +132,6 @@ public class PlayerController : Character2DController
         }
     }
 
-    //private void PlayRideSound(KeyCode code, string effectName)
-    //{
-    //    if (Input.GetKeyDown(code))
-    //    {
-    //        audioManager.PlayOneShot(effectName);
-    //    }
-
-    //    if (Input.GetKeyUp(code))
-    //    {
-    //        isRiding = false;
-
-    //        audioManager.Stop(effectName);
-    //    }
-    //}
-
     private IEnumerator MovePlayer(Vector3 direction)
     {
         isVerticalMoving = true;
@@ -177,7 +165,7 @@ public class PlayerController : Character2DController
             if (currTempBarValue == maxTempValue)
             {
                 tempController.overheated = true;
-                //audioManager.Stop("RideTemp");
+                StopRidingSounds();
                 isRiding = false;
                 animator.SetBool("isRiding", isRiding);
                 hasStop = true;
@@ -194,5 +182,11 @@ public class PlayerController : Character2DController
                 tempController.IncreaseTemp(0.1f);
             }
         }
+    }
+
+    public void StopRidingSounds()
+    {
+        sfxTracker.StopSFX(GameConstants.SFXType.RIDE);
+        sfxTracker.StopSFX(GameConstants.SFXType.RIDE_TEMP);
     }
 }

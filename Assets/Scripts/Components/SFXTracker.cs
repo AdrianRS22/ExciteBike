@@ -75,7 +75,7 @@ public class SFXTracker : MonoBehaviour
         soundFX[indexPosition].Play();
     }
 
-    void StopSFX(GameConstants.SFXType type)
+    public void StopSFX(GameConstants.SFXType type)
     {
         var audioFound = Fetch(type);
 
