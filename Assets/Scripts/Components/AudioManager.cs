@@ -1,10 +1,15 @@
 using UnityEngine;
 using System;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+
+    /// <summary>
+    /// Si se esta ejecutando un efecto de sonido
+    /// </summary>
+    private bool isAnySoundEffectPlaying = false;
 
     void Awake()
     {
@@ -28,6 +33,16 @@ public class AudioManager : MonoBehaviour
         }
 
         sound.source.Play();
+    }
+
+    public void PlayOneShot(string nombre)
+    {
+        var soundEfect = Fetch(nombre);
+
+        if (soundEfect != null)
+        {
+            soundEfect.source.PlayOneShot(soundEfect.source.clip);
+        }
     }
 
     public void Stop(string nombre)

@@ -624,7 +624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inicioJuego: 0
   raceFinished: 0
-  overheated: 0
 --- !u!4 &504769646
 Transform:
   m_ObjectHideFlags: 0
@@ -2856,7 +2855,7 @@ PrefabInstance:
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
@@ -2885,6 +2884,16 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 3063c632587d11847a23825a3c70b5e0, type: 3}
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
+      propertyPath: sounds.Array.data[3].nombre
+      value: RideTemp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[3].sonido
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f07c33a82353ce4faa5e3438b21beae, type: 3}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
       propertyPath: sounds.Array.data[1].repetir
       value: 1
       objectReference: {fileID: 0}
@@ -2901,6 +2910,26 @@ PrefabInstance:
     - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
         type: 3}
       propertyPath: sounds.Array.data[2].volumen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[3].repetir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[3].volumen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[1].isSoundEfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018346244319788911, guid: 0fad439d01b772545bf5c31805d6291e,
+        type: 3}
+      propertyPath: sounds.Array.data[3].isSoundEfect
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5177,6 +5206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f047008972f28540811e793df3ec570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tempBar: {fileID: 538646747}
+  overheated: 0
+  overheatedContinue: 0
 --- !u!4 &1983157626
 Transform:
   m_ObjectHideFlags: 0
@@ -5289,6 +5321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SoundLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703095329413703942, guid: dc15a96508771d34793778236fc232d1,
+        type: 3}
+      propertyPath: isMute
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8337640966696460417, guid: dc15a96508771d34793778236fc232d1,
         type: 3}

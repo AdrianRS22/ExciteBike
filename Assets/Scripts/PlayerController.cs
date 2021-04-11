@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class PlayerController : Character2DController
 {
+    /// <summary>
+    /// Velocidad del jugador en modo base
+    /// </summary>
     [SerializeField]
-    public float speed = 5f;
+    public float speed = 10f;
+
+    /// <summary>
+    /// Velocidad del jugador utilizando el temporizador
+    /// </summary>
+    private readonly float tempSpeed = 20f;
+
+    /// <summary>
+    /// Velocidad actual del jugador
+    /// </summary>
+    private float currentSpeed;
+
+    /// <summary>
+    /// Modelo de Ride Movement para darle play al efecto de sonido del ride
+    /// </summary>
+    private RideMovementSound rideMovementSound;
 
     private bool isRiding = false;
 
@@ -21,23 +39,43 @@ public class PlayerController : Character2DController
     {
         base.Awake();
         audioManager = FindObjectOfType<AudioManager>();
+        rideMovementSound = null;
     }
-
-
 
     void Update()
     {
         if (gameController.inicioJuego)
         {
-            if (Input.GetKey(GameConstants.RideKeyCode))
+            if(Input.GetKey(GameConstants.RideKeyCode) || Input.GetKey(GameConstants.RideTempKeyCode))
             {
+
                 isRiding = true;
 
-                Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * speed * Time.deltaTime, 0, 0);
+                if (Input.GetKey(GameConstants.RideKeyCode))
+                {
+                    currentSpeed = speed;
+                    rideMovementSound = new RideMovementSound
+                    {
+                        KeyCode = GameConstants.RideKeyCode,
+                        SoundEffect = "Ride"
+                    };
+                }
+                else if (Input.GetKey(GameConstants.RideTempKeyCode))
+                {
+                    currentSpeed = tempSpeed;
+                    rideMovementSound = new RideMovementSound
+                    {
+                        KeyCode = GameConstants.RideTempKeyCode,
+                        SoundEffect = "RideTemp"
+                    };
+                }
+
+                Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * currentSpeed * Time.deltaTime, 0, 0);
                 transform.Translate(translation);
 
                 MovePlayerVertical();
             }
+
             MovePlayerVertical();
         }
     }
@@ -46,9 +84,12 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            PlayRideSound(GameConstants.RideKeyCode, "Ride");
+            if(rideMovementSound != null && isRiding)
+            {
+                PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
+                animator.SetBool("isRiding", isRiding);
+            }
             animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
-            animator.SetBool("isRiding", isRiding);
         }
     }
 
@@ -74,12 +115,13 @@ public class PlayerController : Character2DController
     {
         if (Input.GetKeyDown(code))
         {
-            audioManager.Play(effectName);
+            audioManager.PlayOneShot(effectName);
         }
 
         if (Input.GetKeyUp(code))
         {
             isRiding = false;
+
             audioManager.Stop(effectName);
         }
     }

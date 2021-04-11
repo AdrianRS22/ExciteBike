@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TempController : MonoBehaviour
 {
+    /// <summary>
+    /// Barra temporizador que esta en el canvas
+    /// </summary>
+    [SerializeField]
+    public Slider tempBar;
+
     /// <summary>
     ///  Propiedad que indica si la moto se sobrecalento
     /// </summary>
@@ -39,6 +46,8 @@ public class TempController : MonoBehaviour
                 textColor = Color.white
             }
         };
+        tempBar.maxValue = 100;
+        tempBar.value = 25;
     }
 
     // Start is called before the first frame update
