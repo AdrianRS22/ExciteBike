@@ -580,6 +580,7 @@ GameObject:
   - component: {fileID: 385189281}
   - component: {fileID: 385189283}
   - component: {fileID: 385189282}
+  - component: {fileID: 385189284}
   m_Layer: 5
   m_Name: temp
   m_TagString: Untagged
@@ -645,6 +646,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385189280}
   m_CullTransparentMesh: 1
+--- !u!114 &385189284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385189280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f047008972f28540811e793df3ec570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overheated: 0
+  overheatedContinue: 0
+  liberarJugador:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712578023}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: LiberarJugador
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &431387127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6608190519058262373, guid: 34a6f8a60b3b4ea46bc0c1bf2c849d4b,
@@ -2805,7 +2835,7 @@ Transform:
   - {fileID: 682167537}
   - {fileID: 1621572238}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1272979542
 MonoBehaviour:
@@ -3190,6 +3220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40688e510625264d87753a2f5a3699a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasStop: 0
 --- !u!61 &1712578024
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5736,52 +5767,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1983157624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1983157626}
-  - component: {fileID: 1983157625}
-  m_Layer: 0
-  m_Name: TempController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1983157625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983157624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f047008972f28540811e793df3ec570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tempBar: {fileID: 538646747}
-  overheated: 0
-  overheatedContinue: 0
---- !u!4 &1983157626
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983157624}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9089074, y: -2.9733565, z: -479.21207}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2042234363
 GameObject:
   m_ObjectHideFlags: 3

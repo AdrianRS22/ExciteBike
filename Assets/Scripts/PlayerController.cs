@@ -20,13 +20,14 @@ public class PlayerController : Character2DController
     private float currentSpeed;
 
     /// <summary>
-    /// Modelo de Ride Movement para darle play al efecto de sonido del ride
+    /// Propiedad que se asignara en el animador para comparar si el personaje se esta moviendo o no
     /// </summary>
-    private RideMovementSound rideMovementSound;
-
     private bool isRiding = false;
 
-    private bool hasStop = false;
+    /// <summary>
+    ///  Propiedad que permite detener al player de moverse
+    /// </summary>
+    public bool hasStop = false;
 
     private bool isVerticalMoving = false;
 
@@ -36,17 +37,10 @@ public class PlayerController : Character2DController
 
     private TempController tempController;
 
-    /// <summary>
-    /// Controlador que se encarga de darle seguimiento a todos los efectos de sonido cargados en la escena
-    /// </summary>
-    private SFXTracker sfxTracker;
-
     protected override void Awake()
     {
         base.Awake();
-        rideMovementSound = null;
         tempController = FindObjectOfType<TempController>();
-        sfxTracker = FindObjectOfType<SFXTracker>();
     }
 
     void Update()
@@ -66,21 +60,11 @@ public class PlayerController : Character2DController
                 if (Input.GetKey(GameConstants.RideKeyCode))
                 {
                     currentSpeed = baseSpeed;
-                    rideMovementSound = new RideMovementSound
-                    {
-                        KeyCode = GameConstants.RideKeyCode,
-                        SoundEffect = "Ride"
-                    };
                 }
                 else if (Input.GetKey(GameConstants.RideTempKeyCode))
                 {
                     currentSpeed = tempSpeed;
-                    rideMovementSound = new RideMovementSound
-                    {
-                        KeyCode = GameConstants.RideTempKeyCode,
-                        SoundEffect = "RideTemp"
-                    };
-                    StartCoroutine(TempLogic());
+                    StartCoroutine(tempController.RevisarTemporizador());
                 }
 
                 Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * currentSpeed * Time.deltaTime, 0, 0);
@@ -99,11 +83,6 @@ public class PlayerController : Character2DController
         {
             if (!hasStop)
             {
-                if (rideMovementSound != null)
-                {
-                    //PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
-                }
-
                 if(Input.GetKeyUp(GameConstants.RideKeyCode) || Input.GetKeyUp(GameConstants.RideTempKeyCode))
                 {
                     isRiding = false;
@@ -153,40 +132,15 @@ public class PlayerController : Character2DController
         isVerticalMoving = false;
     }
 
-    IEnumerator TempLogic()
+    public bool IsPlayerInTempMode()
     {
-        var overHeated = tempController.overheated;
-
-        if (!overHeated)
-        {
-            var currTempBarValue = tempController.tempBar.value;
-            var maxTempValue = tempController.tempBar.maxValue;
-
-            if (currTempBarValue == maxTempValue)
-            {
-                tempController.overheated = true;
-                StopRidingSounds();
-                isRiding = false;
-                animator.SetBool("isRiding", isRiding);
-                hasStop = true;
-                yield return new WaitForSeconds(5);
-                tempController.overheated = false;
-                tempController.overheatedContinue = true;
-                tempController.tempBar.value = 25f;
-                yield return new WaitForSeconds(3);
-                tempController.overheatedContinue = false;
-                hasStop = false;
-            }
-            else if(currTempBarValue < maxTempValue)
-            {
-                tempController.IncreaseTemp(0.1f);
-            }
-        }
+        return currentSpeed > baseSpeed;
     }
 
-    public void StopRidingSounds()
+    public void DetenerJugador()
     {
-        sfxTracker.StopSFX(GameConstants.SFXType.RIDE);
-        sfxTracker.StopSFX(GameConstants.SFXType.RIDE_TEMP);
+        isRiding = false;
+        animator.SetBool("isRiding", isRiding);
+        hasStop = true;
     }
 }

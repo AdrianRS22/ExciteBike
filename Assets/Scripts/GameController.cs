@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
     {
         if (!inicioJuego)
         {
-            yield return new WaitForSecondsRealtime(13);
+            yield return new WaitForSecondsRealtime(11);
             startingMarks.ClosingStartingMarks();
             yield return new WaitForSecondsRealtime(1);
             inicioJuego = true;

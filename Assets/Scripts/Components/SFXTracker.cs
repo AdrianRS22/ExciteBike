@@ -38,7 +38,7 @@ public class SFXTracker : MonoBehaviour
     /// <summary>
     /// Detiene todos los audios
     /// </summary>
-    void StopAll()
+    public void StopAll()
     {
         foreach(var sound in soundFX)
         {

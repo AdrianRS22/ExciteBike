@@ -1,25 +1,15 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class TempController : MonoBehaviour
 {
     /// <summary>
-    /// Controlador del audio
-    /// </summary>
-    private AudioManager audioManager;
-
-    /// <summary>
-    /// Controlador del juego
-    /// </summary>
-    private GameController gameController;
-
-    /// <summary>
     /// Barra temporizador que esta en el canvas
     /// </summary>
-    [SerializeField]
-    public Slider tempBar;
+    private Slider tempBar;
 
     /// <summary>
     ///  Propiedad que indica si la moto se sobrecalento
@@ -44,6 +34,15 @@ public class TempController : MonoBehaviour
     /// </summary>
     private GUIStyle estilosLetraTemporizador;
 
+    /// <summary>
+    /// Controlador del personaje
+    /// </summary>
+    private PlayerController playerController;
+
+    /// <summary>
+    /// Controlador que se encarga de darle seguimiento a todos los efectos de sonido cargados en la escena
+    /// </summary>
+    private SFXTracker sfxTracker;
 
     private void Awake()
     {
@@ -56,14 +55,16 @@ public class TempController : MonoBehaviour
                 textColor = Color.white
             }
         };
-        tempBar.maxValue = 100;
-        tempBar.value = 25;
-        audioManager = FindObjectOfType<AudioManager>();
+        tempBar = GetComponentInChildren<Slider>();
+        playerController = FindObjectOfType<PlayerController>();
+        sfxTracker = FindObjectOfType<SFXTracker>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        tempBar.maxValue = 100;
+        tempBar.value = 90;
         StartCoroutine(BlinkingOverHeadedText());
     }
 
@@ -106,5 +107,40 @@ public class TempController : MonoBehaviour
         {
             tempBar.value += increaseValue;
         }
+    }
+
+    public IEnumerator RevisarTemporizador()
+    {
+        bool isTempMode = playerController.IsPlayerInTempMode();
+        if (isTempMode)
+        {
+            if (tempBar.value == tempBar.maxValue)
+            {
+                overheated = true;
+                sfxTracker.StopAll();
+                playerController.DetenerJugador();
+                yield return new WaitForSeconds(5);
+
+                RecargandoTemporizador();
+                yield return new WaitForSeconds(1);
+
+                playerController.hasStop = false;
+                overheatedContinue = false;
+
+                yield return null;
+            }
+            else
+            {
+                IncreaseTemp(0.1f);
+                yield return null;
+            }
+        }
+    }
+
+    public void RecargandoTemporizador()
+    {
+        tempBar.value = 25f;
+        overheated = false;
+        overheatedContinue = true;
     }
 }
