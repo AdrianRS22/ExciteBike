@@ -6,21 +6,36 @@ public class GameController : MonoBehaviour
 {
     public bool inicioJuego = false;
 
+
+    /// <summary>
+    ///  Controlador del game object que posee todos los starting marks
+    /// </summary>
+    private StartingMarksController startingMarks;
+
+    /// <summary>
+    ///  Audio Manager
+    /// </summary>
+    private AudioManager audioManager;
+
+    void Awake()
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+        startingMarks = FindObjectOfType<StartingMarksController>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(StartGame());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(11);
-        inicioJuego = true;
+        if (!inicioJuego)
+        {
+            yield return new WaitForSecondsRealtime(13);
+            startingMarks.ClosingStartingMarks();
+            inicioJuego = true;
+        }
+
     }
 }
