@@ -106,5 +106,9 @@ public class TempController : MonoBehaviour
         {
             tempBar.value += increaseValue;
         }
+        else
+        {
+            overheated = true;
+        }
     }
 }
