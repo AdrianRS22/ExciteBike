@@ -12,14 +12,8 @@ public class GameController : MonoBehaviour
     /// </summary>
     private StartingMarksController startingMarks;
 
-    /// <summary>
-    ///  Audio Manager
-    /// </summary>
-    private AudioManager audioManager;
-
     void Awake()
     {
-        audioManager = FindObjectOfType<AudioManager>();
         startingMarks = FindObjectOfType<StartingMarksController>();
     }
     // Start is called before the first frame update
