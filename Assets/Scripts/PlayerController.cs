@@ -81,15 +81,12 @@ public class PlayerController : Character2DController
     {
         if (gameController.inicioJuego)
         {
-            if (!hasStop)
+            if (Input.GetKeyUp(GameConstants.RideKeyCode) || Input.GetKeyUp(GameConstants.RideTempKeyCode))
             {
-                if(Input.GetKeyUp(GameConstants.RideKeyCode) || Input.GetKeyUp(GameConstants.RideTempKeyCode))
-                {
-                    isRiding = false;
-                }
-                animator.SetBool("isRiding", isRiding);
-                animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
+                isRiding = false;
             }
+            animator.SetBool("isRiding", isRiding);
+            animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
         }
     }
 
