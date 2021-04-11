@@ -28,6 +28,8 @@ public class PlayerController : Character2DController
 
     private bool hasStop = false;
 
+    private bool isVerticalMoving = false;
+
     private Vector3 origPos, targetPos;
 
     private readonly float verticalTimeToMove = 0.2f;
@@ -99,7 +101,6 @@ public class PlayerController : Character2DController
                     PlayRideSound(rideMovementSound.KeyCode, rideMovementSound.SoundEffect);
                 }
                 animator.SetBool("isRiding", isRiding);
-                Debug.Log(Input.GetAxisRaw(GameConstants.AXIS_V));
                 animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
             }
         }
@@ -107,6 +108,11 @@ public class PlayerController : Character2DController
 
     private void MovePlayerVertical()
     {
+        if (isVerticalMoving)
+        {
+            return;
+        };
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             StartCoroutine(MovePlayer(Vector3.up));
@@ -135,7 +141,7 @@ public class PlayerController : Character2DController
 
     private IEnumerator MovePlayer(Vector3 direction)
     {
-        hasStop = true;
+        isVerticalMoving = true;
 
         float elapsedTime = 0;
 
@@ -151,7 +157,7 @@ public class PlayerController : Character2DController
 
         transform.position = targetPos;
 
-        hasStop = false;
+        isVerticalMoving = false;
     }
 
     IEnumerator TempLogic()
@@ -167,7 +173,7 @@ public class PlayerController : Character2DController
             {
                 tempController.overheated = true;
                 audioManager.Stop("RideTemp");
-                animator.SetBool("isRiding", false);
+                isRiding = false;
                 hasStop = true;
                 yield return new WaitForSeconds(5);
                 tempController.overheated = false;
