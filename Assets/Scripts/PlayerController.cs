@@ -111,4 +111,11 @@ public class PlayerController : Character2DController
     {
         return currentSpeed > baseSpeed;
     }
+
+    public void DetenerJugador()
+    {
+        animator.SetFloat(GameConstants.AXIS_H, 0);
+        animator.SetFloat(GameConstants.AXIS_V, 0);
+        hasStop = true;
+    }
 }
