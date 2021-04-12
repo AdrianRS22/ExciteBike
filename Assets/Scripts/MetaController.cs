@@ -6,7 +6,7 @@ public class MetaController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Irse a la ultima escena una vez llegada a la meta
+            Debug.Log("El jugador ha llegado a la meta");
         }
     }
 }
