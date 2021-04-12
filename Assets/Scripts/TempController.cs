@@ -121,7 +121,9 @@ public class TempController : MonoBehaviour
                 playerController.DetenerJugador();
                 yield return new WaitForSeconds(5);
 
-                RecargandoTemporizador();
+                EnfriarTemporizador();
+                overheated = false;
+                overheatedContinue = true;
                 yield return new WaitForSeconds(1);
 
                 playerController.hasStop = false;
@@ -137,10 +139,8 @@ public class TempController : MonoBehaviour
         }
     }
 
-    public void RecargandoTemporizador()
+    public void EnfriarTemporizador()
     {
         tempBar.value = 25f;
-        overheated = false;
-        overheatedContinue = true;
     }
 }

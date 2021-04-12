@@ -6,6 +6,12 @@ public class Character2DController : MonoBehaviour
 
     protected GameController gameController;
 
+    /// <summary>
+    ///  Esta propiedad va a permitir definir ritmos de velocidad y se usara con el fin de que si el objecto colisiona con un obstaculo
+    ///  el objeto sera mas lento
+    /// </summary>
+    protected float cambioVelocidad = 1f;
+
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
@@ -24,5 +30,8 @@ public class Character2DController : MonoBehaviour
 
     }
 
-
+    public float CambioDeVelocidad {
+        get { return cambioVelocidad; }
+        set { cambioVelocidad = value; }
+    }
 }

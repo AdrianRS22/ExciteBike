@@ -85,7 +85,7 @@ public class PlayerController : Character2DController
 
     private void MovePlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, currentSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, (currentSpeed * cambioVelocidad) * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
