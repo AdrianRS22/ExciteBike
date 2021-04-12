@@ -8,6 +8,8 @@ public class SFXTracker : MonoBehaviour
 
     private GameController gameController;
 
+    private PlayerController playerController;
+
     /// <summary>
     ///  Esta propiedad permite detectar cuando se ha presionado cualquier tecla
     /// </summary>
@@ -16,11 +18,17 @@ public class SFXTracker : MonoBehaviour
     void Awake()
     {
         gameController = FindObjectOfType<GameController>();
+        playerController = FindObjectOfType<PlayerController>();
     }
     void Update()
     {
         if (gameController.inicioJuego)
         {
+            if (playerController.hasStop)
+            {
+                return;
+            }
+
             if (Input.anyKeyDown)
             {
                 PlaySFX(GameConstants.RideKeyCode, GameConstants.SFXType.RIDE);
