@@ -1042,6 +1042,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 7703095329413703942, guid: dc15a96508771d34793778236fc232d1,
+        type: 3}
+      propertyPath: isMute
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8337640966696460417, guid: dc15a96508771d34793778236fc232d1,
         type: 3}
       propertyPath: m_RootOrder

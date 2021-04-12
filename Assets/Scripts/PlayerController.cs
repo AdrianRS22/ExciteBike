@@ -91,7 +91,7 @@ public class PlayerController : Character2DController
         {
             if (Mathf.Abs(Input.GetAxisRaw(GameConstants.AXIS_H)) > .2f)
             {
-                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw(GameConstants.AXIS_H), 0f, 0f), .2f, whatStopsMovement))
+                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw(GameConstants.AXIS_H), 0f, 0f), .5f, whatStopsMovement))
                 {
                     movePoint.position += new Vector3(Input.GetAxisRaw(GameConstants.AXIS_H), 0f, 0f);
                 }
@@ -99,7 +99,7 @@ public class PlayerController : Character2DController
 
             if (Mathf.Abs(Input.GetAxisRaw(GameConstants.AXIS_V)) > .2f)
             {
-                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw(GameConstants.AXIS_V), 0f), .2f, whatStopsMovement))
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw(GameConstants.AXIS_V), 0f), .5f, whatStopsMovement))
                 {
                     movePoint.position += new Vector3(0f, Input.GetAxisRaw(GameConstants.AXIS_V), 0f);
                 }
