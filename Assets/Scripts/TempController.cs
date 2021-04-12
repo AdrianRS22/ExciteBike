@@ -118,7 +118,7 @@ public class TempController : MonoBehaviour
             {
                 overheated = true;
                 sfxTracker.StopAll();
-                playerController.DetenerJugador();
+                playerController.hasStop = true;
                 yield return new WaitForSeconds(5);
 
                 RecargandoTemporizador();

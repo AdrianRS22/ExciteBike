@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : Character2DController
 {
@@ -20,28 +18,35 @@ public class PlayerController : Character2DController
     private float currentSpeed;
 
     /// <summary>
-    /// Propiedad que se asignara en el animador para comparar si el personaje se esta moviendo o no
-    /// </summary>
-    private bool isRiding = false;
-
-    /// <summary>
     ///  Propiedad que permite detener al player de moverse
     /// </summary>
     public bool hasStop = false;
 
-    private bool isVerticalMoving = false;
-
-    private Vector3 origPos, targetPos;
-
-    private readonly float verticalTimeToMove = 0.2f;
-
     private TempController tempController;
+
+    /// <summary>
+    ///  Le indicará al player en que punto debe de moverse
+    /// </summary>
+    [SerializeField]
+    public Transform movePoint;
+
+    /// <summary>
+    ///  Esto indicara en donde el movePoint no se puede asignar para mover al personaje
+    /// </summary>
+    [SerializeField]
+    public LayerMask whatStopsMovement;
 
     protected override void Awake()
     {
         base.Awake();
         tempController = FindObjectOfType<TempController>();
     }
+
+    void Start()
+    {
+        movePoint.parent = null;
+    }
+
 
     void Update()
     {
@@ -54,9 +59,6 @@ public class PlayerController : Character2DController
 
             if (Input.GetKey(GameConstants.RideKeyCode) || Input.GetKey(GameConstants.RideTempKeyCode))
             {
-
-                isRiding = true;
-
                 if (Input.GetKey(GameConstants.RideKeyCode))
                 {
                     currentSpeed = baseSpeed;
@@ -66,78 +68,47 @@ public class PlayerController : Character2DController
                     currentSpeed = tempSpeed;
                     StartCoroutine(tempController.RevisarTemporizador());
                 }
-
-                Vector3 translation = new Vector3(-Input.GetAxisRaw(GameConstants.AXIS_H) * currentSpeed * Time.deltaTime, 0, 0);
-                transform.Translate(translation);
-
-                MovePlayerVertical();
             }
-
-            MovePlayerVertical();
+            MovePlayer();
         }
     }
 
     private void LateUpdate()
     {
-        if (gameController.inicioJuego)
-        {
-            if (Input.GetKeyUp(GameConstants.RideKeyCode) || Input.GetKeyUp(GameConstants.RideTempKeyCode))
-            {
-                isRiding = false;
-            }
-            animator.SetBool("isRiding", isRiding);
-            animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
-        }
-    }
-
-    private void MovePlayerVertical()
-    {
-        if (isVerticalMoving)
+        if (hasStop)
         {
             return;
-        };
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            StartCoroutine(MovePlayer(Vector3.up));
         }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            StartCoroutine(MovePlayer(Vector3.down));
-        }
+        animator.SetFloat(GameConstants.AXIS_H, Input.GetAxisRaw(GameConstants.AXIS_H));
+        animator.SetFloat(GameConstants.AXIS_V, Input.GetAxisRaw(GameConstants.AXIS_V));
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    private void MovePlayer()
     {
-        isVerticalMoving = true;
+        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, currentSpeed * Time.deltaTime);
 
-        float elapsedTime = 0;
-
-        origPos = transform.position;
-        targetPos = origPos + direction;
-
-        while(elapsedTime < verticalTimeToMove)
+        if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
         {
-            transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / verticalTimeToMove));
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            if (Mathf.Abs(Input.GetAxisRaw(GameConstants.AXIS_H)) > .2f)
+            {
+                if(!Physics2D.OverlapCircle(movePoint.position + new Vector3(Input.GetAxisRaw(GameConstants.AXIS_H), 0f, 0f), .2f, whatStopsMovement))
+                {
+                    movePoint.position += new Vector3(Input.GetAxisRaw(GameConstants.AXIS_H), 0f, 0f);
+                }
+            }
+
+            if (Mathf.Abs(Input.GetAxisRaw(GameConstants.AXIS_V)) > .2f)
+            {
+                if (!Physics2D.OverlapCircle(movePoint.position + new Vector3(0f, Input.GetAxisRaw(GameConstants.AXIS_V), 0f), .2f, whatStopsMovement))
+                {
+                    movePoint.position += new Vector3(0f, Input.GetAxisRaw(GameConstants.AXIS_V), 0f);
+                }
+            }
         }
-
-        transform.position = targetPos;
-
-        isVerticalMoving = false;
     }
 
     public bool IsPlayerInTempMode()
     {
         return currentSpeed > baseSpeed;
-    }
-
-    public void DetenerJugador()
-    {
-        isRiding = false;
-        animator.SetBool("isRiding", isRiding);
-        hasStop = true;
     }
 }

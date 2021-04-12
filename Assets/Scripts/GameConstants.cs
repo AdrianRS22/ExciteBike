@@ -20,7 +20,7 @@ public static class GameConstants
     public const string AXIS_H = "Horizontal";
 
     /// <summary>
-    ///  Axis del input manager que detecta movimientos en vertical y parametro vertical en el animator
+    ///  Axis del input manager que detecta movimientos en vertical
     /// </summary>
     public const string AXIS_V = "Vertical";
 
