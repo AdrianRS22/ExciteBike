@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Ignorar los datos guardados y cargados en ExciteBike
+Assets/Data/
+
