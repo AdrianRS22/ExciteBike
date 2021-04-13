@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2116137619531032998}
   - component: {fileID: 2116137619531032985}
   - component: {fileID: 2116137619531032984}
+  - component: {fileID: 5264648216108795465}
   m_Layer: 0
   m_Name: TercerReferi
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116137619531032999}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -12.97, y: 5.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -103,3 +104,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5264648216108795465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116137619531032999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81248dc9dc33594b99861cbf5156906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movePosition: {fileID: 0}
