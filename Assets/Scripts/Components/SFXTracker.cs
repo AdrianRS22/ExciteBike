@@ -15,6 +15,17 @@ public class SFXTracker : MonoBehaviour
     /// </summary>
     private bool holdingDown;
 
+    /// <summary>
+    /// Tipos de efectos de sonido que va a tener el juego
+    /// </summary>
+    private enum SFXType
+    {
+        RIDE,
+        RIDE_TEMP,
+        WINNING,
+        TEMP_ALMOST_FULL
+    }
+
     void Awake()
     {
         gameController = FindObjectOfType<GameController>();
@@ -31,8 +42,8 @@ public class SFXTracker : MonoBehaviour
 
             if (Input.anyKeyDown)
             {
-                PlaySFX(GameConstants.RideKeyCode, GameConstants.SFXType.RIDE);
-                PlaySFX(GameConstants.RideTempKeyCode, GameConstants.SFXType.RIDE_TEMP);
+                PlaySFX(GameConstants.RideKeyCode, SFXType.RIDE);
+                PlaySFX(GameConstants.RideTempKeyCode, SFXType.RIDE_TEMP);
                 holdingDown = true;
             }
 
@@ -59,7 +70,7 @@ public class SFXTracker : MonoBehaviour
     /// </summary>
     /// <param name="inputKey"></param>
     /// <param name="type"></param>
-    void PlaySFX(KeyCode inputKey, GameConstants.SFXType type)
+    void PlaySFX(KeyCode inputKey, SFXType type)
     {
         if (Input.GetKeyDown(inputKey))
         {
@@ -83,7 +94,7 @@ public class SFXTracker : MonoBehaviour
         soundFX[indexPosition].Play();
     }
 
-    public void StopSFX(GameConstants.SFXType type)
+    void StopSFX(SFXType type)
     {
         var audioFound = Fetch(type);
 
@@ -98,18 +109,18 @@ public class SFXTracker : MonoBehaviour
     /// </summary>
     /// <param name="type"></param>
     /// <returns>AudioSource</returns>
-    AudioSource Fetch(GameConstants.SFXType type)
+    AudioSource Fetch(SFXType type)
     {
         AudioSource audio = null;
         switch (type)
         {
-            case GameConstants.SFXType.RIDE:
+            case SFXType.RIDE:
                 audio = soundFX[0];
                 break;
-            case GameConstants.SFXType.RIDE_TEMP:
+            case SFXType.RIDE_TEMP:
                 audio = soundFX[1];
                 break;
-            case GameConstants.SFXType.TEMP_ALMOST_FULL:
+            case SFXType.TEMP_ALMOST_FULL:
                 audio = soundFX[2];
                 break;
         }
