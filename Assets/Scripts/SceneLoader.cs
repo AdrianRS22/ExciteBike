@@ -12,6 +12,11 @@ public class SceneLoader : MonoBehaviour
         escenaActual = SceneManager.GetActiveScene().buildIndex;
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void ProximaEscena()
     {
         SceneManager.LoadScene(escenaActual + 1);
