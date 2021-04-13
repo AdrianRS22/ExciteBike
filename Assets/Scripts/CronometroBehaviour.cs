@@ -1,16 +1,19 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
+using System.Linq;
 
 public class CronometroBehaviour : MonoBehaviour
 {
     public float tiempo;
     public Text textoTiempo;
+    public Text textoBestScore;
 
     private GameController gameController;
 
     void Awake()
     {
+        textoBestScore.text = string.Empty;
         gameController = FindObjectOfType<GameController>();
     }
 
@@ -19,6 +22,7 @@ public class CronometroBehaviour : MonoBehaviour
     {
         textoTiempo.text = "0:00:00";
         tiempo = 0;
+        ObtenerMejorPuntuacion();
     }
 
     // Update is called once per frame
@@ -39,5 +43,14 @@ public class CronometroBehaviour : MonoBehaviour
         int milisegundos = (int)(tiempo * 100) % 100;
 
         textoTiempo.text = string.Format("{0:0}:{1:00}:{2:00}", minutos, segundos, milisegundos);
+    }
+
+    void ObtenerMejorPuntuacion()
+    {
+        var scoreList = SaveLoadManager.LoadData<List<Score>>("Data", "score");
+        if(scoreList.Count > 0)
+        {
+            textoBestScore.text = scoreList.OrderBy(o => o.value).First().text;
+        }
     }
 }
