@@ -9,11 +9,14 @@ public class MetaController : MonoBehaviour
 
     private SceneLoader sceneLoader;
 
+    private CronometroBehaviour cronometroBehaviour;
+
     void Awake()
     {
         sfxTracker = FindObjectOfType<SFXTracker>();
         audioManager = FindObjectOfType<AudioManager>();
         sceneLoader = FindObjectOfType<SceneLoader>();
+        cronometroBehaviour = FindObjectOfType<CronometroBehaviour>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +35,8 @@ public class MetaController : MonoBehaviour
     IEnumerator MoverEscenaGameOver()
     {
         yield return new WaitForSeconds(6);
+        //Debug.Log(cronometroBehaviour.tiempo);
+        //Debug.Log(cronometroBehaviour.textoTiempo.text);
         sceneLoader.ProximaEscena();
     }
 }
