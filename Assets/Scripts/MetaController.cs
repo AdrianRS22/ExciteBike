@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MetaController : MonoBehaviour
 {
@@ -11,12 +13,19 @@ public class MetaController : MonoBehaviour
 
     private CronometroBehaviour cronometroBehaviour;
 
+    private List<Score> scoreList;
+
     void Awake()
     {
         sfxTracker = FindObjectOfType<SFXTracker>();
         audioManager = FindObjectOfType<AudioManager>();
         sceneLoader = FindObjectOfType<SceneLoader>();
         cronometroBehaviour = FindObjectOfType<CronometroBehaviour>();
+    }
+
+    void Start()
+    {
+        scoreList = SaveLoadManager.LoadData<List<Score>>("Data", "score") ?? new List<Score>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,8 +44,19 @@ public class MetaController : MonoBehaviour
     IEnumerator MoverEscenaGameOver()
     {
         yield return new WaitForSeconds(6);
-        //Debug.Log(cronometroBehaviour.tiempo);
-        //Debug.Log(cronometroBehaviour.textoTiempo.text);
+        SaveScore();
         sceneLoader.ProximaEscena();
+    }
+
+    private void SaveScore()
+    {
+        var score = new Score
+        {
+            text = cronometroBehaviour.textoTiempo.text,
+            value = cronometroBehaviour.tiempo,
+            dateCreated = DateTime.Now
+        };
+        scoreList.Add(score);
+        SaveLoadManager.SaveData(scoreList, "Data", "score");
     }
 }

@@ -5,7 +5,7 @@ public static class SaveLoadManager
 {
     public static void SaveData<T>(T data, string path, string fileName)
     {
-        string fullPath = $"{Application.persistentDataPath}/{path}/";
+        string fullPath = $"{Application.dataPath}/{path}/";
         bool folderExist = Directory.Exists(fullPath);
 
         if (!folderExist)
@@ -19,7 +19,7 @@ public static class SaveLoadManager
 
     public static T LoadData<T>(string path, string fileName)
     {
-        string fullPath = $"{Application.persistentDataPath}/{path}/{fileName}.json";
+        string fullPath = $"{Application.dataPath}/{path}/{fileName}.json";
         if (File.Exists(fullPath))
         {
             string textJson = File.ReadAllText(fullPath);

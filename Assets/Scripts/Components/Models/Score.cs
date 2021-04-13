@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[SerializeField]
+[Serializable]
 public class Score
 {
     public string text;
