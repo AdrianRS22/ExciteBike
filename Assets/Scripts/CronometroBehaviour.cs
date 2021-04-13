@@ -48,7 +48,7 @@ public class CronometroBehaviour : MonoBehaviour
     void ObtenerMejorPuntuacion()
     {
         var scoreList = SaveLoadManager.LoadData<List<Score>>("Data", "score");
-        if(scoreList.Count > 0)
+        if(scoreList != null)
         {
             textoBestScore.text = scoreList.OrderBy(o => o.value).First().text;
         }
