@@ -24,7 +24,7 @@ public class CronometroBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.inicioJuego)
+        if (gameController.inicioJuego && !gameController.raceFinished)
         {
             CalcularTiempo();
         }

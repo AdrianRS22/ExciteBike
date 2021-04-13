@@ -24,7 +24,7 @@ public class SFXTracker : MonoBehaviour
     {
         if (gameController.inicioJuego)
         {
-            if (playerController.hasStop)
+            if (playerController.hasStop || gameController.raceFinished)
             {
                 return;
             }

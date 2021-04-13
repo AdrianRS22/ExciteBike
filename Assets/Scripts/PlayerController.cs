@@ -122,5 +122,6 @@ public class PlayerController : Character2DController
     public void JugadorHaFinalizadoCarrera()
     {
         animator.SetBool("Winning", true);
+        gameController.raceFinished = true;
     }
 }
