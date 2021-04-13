@@ -5,6 +5,6 @@ using UnityEngine;
 public class Score
 {
     public string text;
-    public DateTime value;
+    public float value;
     public DateTime dateCreated;
 }
