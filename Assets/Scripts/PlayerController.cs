@@ -118,4 +118,9 @@ public class PlayerController : Character2DController
         animator.SetFloat(GameConstants.AXIS_V, 0);
         hasStop = true;
     }
+
+    public void JugadorHaFinalizadoCarrera()
+    {
+        animator.SetBool("Winning", true);
+    }
 }
