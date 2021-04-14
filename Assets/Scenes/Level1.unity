@@ -26202,7 +26202,7 @@ MonoBehaviour:
   height: 2
   repathRate: 0.5
   canSearch: 1
-  canMove: 1
+  canMove: 0
   maxSpeed: 10
   gravity: {x: 0, y: 0, z: 0}
   groundMask:
