@@ -16,7 +16,6 @@ public class EnemyController : Character2DController
     // Update is called once per frame
     void Update()
     {
-
         aiPath.maxSpeed = baseSpeed * cambioVelocidad;
         animator.SetFloat(GameConstants.AXIS_H, Mathf.Round(aiPath.desiredVelocity.normalized.x));
         animator.SetFloat(GameConstants.AXIS_V, Mathf.Round(aiPath.desiredVelocity.normalized.y));
