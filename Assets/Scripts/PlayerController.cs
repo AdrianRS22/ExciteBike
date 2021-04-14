@@ -3,11 +3,6 @@
 public class PlayerController : Character2DController
 {
     /// <summary>
-    /// Velocidad del jugador en modo base
-    /// </summary>
-    private readonly float baseSpeed = 10f;
-
-    /// <summary>
     /// Velocidad del jugador utilizando el temporizador
     /// </summary>
     private readonly float tempSpeed = 20f;

@@ -7,6 +7,11 @@ public class Character2DController : MonoBehaviour
     protected GameController gameController;
 
     /// <summary>
+    /// Velocidad del jugador en modo base
+    /// </summary>
+    protected readonly float baseSpeed = 10f;
+
+    /// <summary>
     ///  Esta propiedad va a permitir definir ritmos de velocidad y se usara con el fin de que si el objecto colisiona con un obstaculo
     ///  el objeto sera mas lento
     /// </summary>
